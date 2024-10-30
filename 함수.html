@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수와 스코프</title>
+  </head>
+  <body>
+    <script>
+      //함수
+      function add(x, y) {
+        return x + y;
+      }
+      console.log(add(2, 3)); // 콘솔에 더한값이 출력
+
+      //스코프 전역변수(let name(예시에서)),
+      //지역변수 (let message(예시에서) 함수 안에서만 사용가능)
+      let name = "홍길동";
+      function showMessage() {
+        let message = "안녕!";
+        console.log(message + name);
+      }
+      console.log(name);
+      showMessage();
+
+      //함수 표현식 (함수를 변수에 할당)
+      //이 함수의 이름은 sayHi 가 됨, 사용도 함수처럼 사용 sayHi() <<
+      //변수에 함수를 넣을 수 있다. 복사도 가능
+      let sayHi = function (name) {
+        alert("헬로우!" + name);
+        return "굿바이!";
+      };
+      let func = sayHi; // 함수의 복사
+
+      // 콜백 함수 : 함수를 값처럼 매개변수에 전달
+      function ask(question, yes, no) {
+        if (confirm(question)) yes();
+        else no();
+      }
+      let ok = "동의하겟습니까?";
+      ask(ok, showOk, showCancle);
+      // 함수의 선언은 항상 호이스팅 되므로 위치는 중요하지 않음.
+      // let 변수는 호이스팅, 재정의가 되지않고,
+      // var변수는 호이스팅과 재정의가 되지만 undefined값으로 호이스팅됨, 변수의 좋지 않은 예.
+      // var okay = "한번정의"
+      // var okay = "두번정의 재정의"
+
+      function showOk() {
+        alert("동의했습니다.");
+      }
+      function showCancle() {
+        alert("취소 버튼을 눌렀습니다.");
+      }
+
+      //함수는 호이스팅이 됨 (호이스팅이 되면 위치 상관없이 무조건 불러옴.
+    </script>
+  </body>
+</html>
